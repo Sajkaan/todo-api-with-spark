@@ -3,11 +3,11 @@ package com.teamtreehouse.techdegrees.model;
 public class Todo {
     private int id;
     private String name;
-    private boolean isCompleted;
+    private boolean completed;
 
-    public Todo(String name, boolean isCompleted) {
+    public Todo(String name, boolean completed) {
         this.name = name;
-        this.isCompleted = isCompleted;
+        this.completed = completed;
     }
 
     public int getId() {
@@ -27,11 +27,11 @@ public class Todo {
     }
 
     public boolean isCompleted() {
-        return isCompleted;
+        return completed;
     }
 
     public void setCompleted(boolean completed) {
-        isCompleted = completed;
+        this.completed = completed;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Todo {
         Todo todo = (Todo) o;
 
         if (id != todo.id) return false;
-        if (isCompleted != todo.isCompleted) return false;
+        if (completed != todo.completed) return false;
         return name != null ? name.equals(todo.name) : todo.name == null;
     }
 
@@ -50,7 +50,7 @@ public class Todo {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (isCompleted ? 1 : 0);
+        result = 31 * result + (completed ? 1 : 0);
         return result;
     }
 }
