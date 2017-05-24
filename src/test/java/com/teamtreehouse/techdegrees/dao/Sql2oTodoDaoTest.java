@@ -55,6 +55,45 @@ public class Sql2oTodoDaoTest {
         assertEquals(2, dao.findAll().size());
     }
 
+    @Test
+    public void findByIdIsReturned() throws Exception {
+        Todo originalTodo = newTestTodo();
+        dao.create(originalTodo);
+
+        Todo foundTodo = dao.findById(originalTodo.getId());
+
+        assertEquals(foundTodo, originalTodo);
+    }
+
+    @Test
+    public void updateReturnsProperTodo() throws Exception {
+        Todo todo = newTestTodo();
+        String newName = "Updated todo";
+        boolean complete = true;
+
+        dao.create(todo);
+
+        todo.setName(newName);
+        todo.setCompleted(complete);
+
+        dao.update(todo);
+
+        assertEquals(dao.findById(1).getName(), newName);
+        assertEquals(dao.findById(1).isCompleted(), complete);
+
+    }
+
+    @Test
+    public void deleteTodoRemovesTodo() throws Exception {
+        Todo todo = newTestTodo();
+        dao.create(todo);
+
+        dao.delete(todo.getId());
+
+        assertEquals(0, dao.findAll().size());
+
+    }
+
     private Todo newTestTodo() {
         return new Todo("New Job", false);
     }

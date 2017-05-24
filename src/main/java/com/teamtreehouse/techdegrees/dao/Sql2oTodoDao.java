@@ -34,12 +34,12 @@ public class Sql2oTodoDao implements TodoDao {
 
     @Override
     public void update(Todo todo) throws DaoException {
-        String sql = "UPDATE FROM todos SET name = :name, complete = :complete WHERE id = :id";
+        String sql = "UPDATE todos SET name = :name, completed = :completed WHERE id = :id";
         try(Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("name", todo.getName())
-                    .addParameter("complete", todo.isCompleted())
                     .addParameter("id", todo.getId())
+                    .addParameter("completed", todo.isCompleted())
                     .executeUpdate();
         } catch (Sql2oException ex) {
             throw new DaoException(ex,"Problem with updating.");
