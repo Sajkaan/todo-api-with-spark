@@ -31,12 +31,32 @@ public class Sql2oTodoDaoTest {
 
     @Test
     public void creatingTodoSetsId() throws Exception {
-        Todo todo = new Todo("New Job", false);
+        Todo todo = newTestTodo();
         int originalTodoId = todo.getId();
 
         dao.create(todo);
 
         assertNotEquals(originalTodoId, todo.getId());
+    }
+
+    @Test
+    public void noTodosReturnEmptyList() throws Exception {
+        assertEquals(0, dao.findAll().size());
+    }
+
+    @Test
+    public void addedTodosAreReturned() throws Exception {
+        Todo todo = newTestTodo();
+        Todo todo1 = newTestTodo();
+
+        dao.create(todo);
+        dao.create(todo1);
+
+        assertEquals(2, dao.findAll().size());
+    }
+
+    private Todo newTestTodo() {
+        return new Todo("New Job", false);
     }
 
 
