@@ -5,9 +5,9 @@ public class Todo {
     private String name;
     private boolean completed;
 
-    public Todo(String name, boolean completed) {
+    public Todo(String name) {
         this.name = name;
-        this.completed = completed;
+        this.completed = false;
     }
 
     public int getId() {

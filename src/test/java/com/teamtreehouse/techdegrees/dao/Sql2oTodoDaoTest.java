@@ -96,7 +96,7 @@ public class Sql2oTodoDaoTest {
     }
 
     private Todo newTestTodo() {
-        return new Todo("New Job", false);
+        return new Todo("New Job");
     }
 
 
