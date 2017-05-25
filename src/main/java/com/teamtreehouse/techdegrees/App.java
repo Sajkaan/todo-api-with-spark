@@ -4,11 +4,10 @@ package com.teamtreehouse.techdegrees;
 import com.google.gson.Gson;
 import com.teamtreehouse.techdegrees.dao.Sql2oTodoDao;
 import com.teamtreehouse.techdegrees.dao.TodoDao;
+import com.teamtreehouse.techdegrees.model.Todo;
 import org.sql2o.Sql2o;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 public class App {
 
@@ -32,6 +31,28 @@ public class App {
 
 
         get("/api/v1/todos", "application/json", (req, res) -> todoDao.findAll(), gson::toJson);
+
+        post("/api/v1/todos", "application/json", (req, res) -> {
+            Todo todo = gson.fromJson(req.body() , Todo.class);
+            todoDao.create(todo);
+            res.status(201);
+            return todo;
+        }, gson::toJson);
+
+        put("/api/v1/todos/:id", "application/json", (req,res)-> {
+            Todo todo = todoDao.findById(Integer.parseInt(req.params("id")));
+            todo.setName(gson.fromJson(req.body(), Todo.class).getName());
+            todo.setCompleted(gson.fromJson(req.body(), Todo.class).isCompleted());
+            todoDao.update(todo);
+            return todo;
+        },gson::toJson);
+
+
+        delete("/api/v1/todos/:id", "application/json", (req, res) -> {
+            todoDao.delete(Integer.parseInt(req.params("id")));
+            res.status(204);
+            return null;
+        },gson::toJson);
 
     }
 
