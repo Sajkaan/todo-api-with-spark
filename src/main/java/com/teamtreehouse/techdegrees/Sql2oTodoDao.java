@@ -1,4 +1,4 @@
-package com.teamtreehouse.techdegrees.dao;
+package com.teamtreehouse.techdegrees;
 
 import com.teamtreehouse.techdegrees.exception.DaoException;
 import com.teamtreehouse.techdegrees.model.Todo;
@@ -6,7 +6,6 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class Sql2oTodoDao implements TodoDao {

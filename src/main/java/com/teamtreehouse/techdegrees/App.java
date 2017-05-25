@@ -2,8 +2,6 @@ package com.teamtreehouse.techdegrees;
 
 
 import com.google.gson.Gson;
-import com.teamtreehouse.techdegrees.dao.Sql2oTodoDao;
-import com.teamtreehouse.techdegrees.dao.TodoDao;
 import com.teamtreehouse.techdegrees.model.Todo;
 import org.sql2o.Sql2o;
 
@@ -46,7 +44,6 @@ public class App {
             todoDao.update(todo);
             return todo;
         },gson::toJson);
-
 
         delete("/api/v1/todos/:id", "application/json", (req, res) -> {
             todoDao.delete(Integer.parseInt(req.params("id")));

@@ -1,4 +1,4 @@
-package com.teamtreehouse.techdegrees.dao;
+package com.teamtreehouse.techdegrees;
 
 import com.teamtreehouse.techdegrees.exception.DaoException;
 import com.teamtreehouse.techdegrees.model.Todo;

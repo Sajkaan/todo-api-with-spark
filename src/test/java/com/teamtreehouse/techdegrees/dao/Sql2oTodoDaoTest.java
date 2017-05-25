@@ -1,5 +1,6 @@
 package com.teamtreehouse.techdegrees.dao;
 
+import com.teamtreehouse.techdegrees.Sql2oTodoDao;
 import com.teamtreehouse.techdegrees.model.Todo;
 import org.junit.After;
 import org.junit.Before;
