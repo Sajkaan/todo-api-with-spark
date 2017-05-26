@@ -42,6 +42,7 @@ public class App {
             todo.setName(gson.fromJson(req.body(), Todo.class).getName());
             todo.setCompleted(gson.fromJson(req.body(), Todo.class).isCompleted());
             todoDao.update(todo);
+            res.status(200);
             return todo;
         },gson::toJson);
 

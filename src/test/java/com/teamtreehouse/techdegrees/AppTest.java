@@ -88,6 +88,32 @@ public class AppTest {
 
     }
 
+    @Test
+    public void savingTodosReturnsUpdatedStatus() throws Exception {
+        Todo todo = newTestTodo();
+        todoDao.create(todo);
+        Map<String, Object> values = new HashMap<>();
+        values.put("name", "Test todo 1");
+        values.put("completed", true);
+
+        ApiResponse res = client.request("PUT",
+                String.format("/api/v1/todos/%d", todo.getId()),
+                gson.toJson(values));
+
+        assertEquals(200, res.getStatus());
+    }
+
+    @Test
+    public void deleteReturns204StatusAndReturnsEmptyBody() throws Exception {
+        Todo todo = newTestTodo();
+        todoDao.create(todo);
+
+        ApiResponse res = client.request("DELETE", String.format("/api/v1/todos/%d", todo.getId()));
+
+        assertEquals(204, res.getStatus());
+        assertEquals(0, todoDao.findAll().size());
+    }
+
     private Todo newTestTodo() {
         return new Todo("New Job");
     }
