@@ -1,0 +1,2 @@
+[![Build Status](https://travis-ci.org/Sajkaan/todo-api-with-spark.svg?branch=master)](https://travis-ci.org/Sajkaan/todo-api-with-spark.svg?branch=master)
+This project takes a working Angular.js Todo app and provides a back-end using RESTful practices
